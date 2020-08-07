@@ -145,10 +145,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ListMethods.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="propagate_const.h" />
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeMethods.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

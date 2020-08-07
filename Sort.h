@@ -93,6 +93,25 @@ public:
 	}
 
 	template <class ForwardIt, typename UnaryOp>
+	static typename ForwardIt::value_type 
+		FindKthElement(const ForwardIt& b, const ForwardIt& e, UnaryOp&& unaryOp, const size_t K)
+	{
+		if (e - b <= 1) return *b;
+		auto N = e - b;
+		for (auto mid = (N >> 1) - 1; mid >= 0; --mid) {
+			heapSink(mid, b, N, unaryOp);
+		}
+		auto k = K - 1;
+		while (k --) {
+			iter_swap(b, b + N - 1);
+			--N;
+			heapSink(0, b, N, unaryOp);
+		}
+		return *b;
+	}
+
+
+	template <class ForwardIt, typename UnaryOp>
 	static void QuickSort_STL(ForwardIt b, ForwardIt e, UnaryOp&& unaryOp)
 	{
 		if (b - e <= 1) return;
@@ -176,6 +195,7 @@ private:
 #endif
 	static decltype(auto) seek_partition(const ForwardIt& b, const ForwardIt& e, UnaryOp&& unaryOp) {
 		auto L = b;
+		// L = std::find_if_not(b, e, p); R = next(L);
 		for (; L != e; ++L) { // skip in-place elements at beginning
 			if (!unaryOp(*L)) break;
 		}

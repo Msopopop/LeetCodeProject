@@ -124,4 +124,5 @@ namespace tree {
 	class BTree :public basicTree {
 
 	}; // class BTree
+
 } // namespace tree

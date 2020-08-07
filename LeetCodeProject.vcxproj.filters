@@ -42,5 +42,11 @@
     <ClInclude Include="Tree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ListMethods.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeMethods.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
