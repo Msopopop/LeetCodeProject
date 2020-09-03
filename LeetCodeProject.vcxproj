@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
@@ -148,6 +148,7 @@
     <ClInclude Include="ListMethods.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="propagate_const.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sort.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeMethods.h" />

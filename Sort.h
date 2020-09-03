@@ -1,4 +1,7 @@
 #pragma once
+#include <random>
+#include <iterator>
+#include <algorithm>
 class Sort
 {
 public:
@@ -13,6 +16,11 @@ public:
 
 	template<typename ForwardIt, typename UnaryOp>
 	static void InsertSort(const ForwardIt& b, const ForwardIt& e, UnaryOp&& unaryOp) {
+		/*
+		for (auto i = b; i != e; ++i) {
+			std::rotate(std::upper_bound(b, i, *i), i, next(i));
+		}
+		*/
 		using std::min_element;
 		using std::iter_swap;
 		if (e - b <= 1) return;
@@ -69,6 +77,11 @@ public:
 
 	template<typename ForwardIt, typename UnaryOp>
 	static void QuickSort(const ForwardIt& b, const ForwardIt& e, UnaryOp&& unaryOp) {
+		
+		std::random_device rd;
+		std::mt19937 g(rd());
+		std::shuffle(b, e, g);
+		
 		if (e - b <= 8) {
 			InsertSort(b, e, std::forward<UnaryOp>(unaryOp));
 			return;
@@ -206,6 +219,20 @@ private:
 			}
 		}
 		return L;
+	}
+
+	template<class RandomIt, class URBG>
+	void shuffle(RandomIt first, RandomIt last, URBG&& g)
+	{
+		using diff_t = typename std::iterator_traits<RandomIt>::difference_type;
+		using distr_t = typename std::uniform_int_distribution<diff_t>;
+		using param_t = typename distr_t::param_type;
+
+		distr_t D;
+		diff_t n = last - first;
+		for (diff_t i = n - 1; i > 0; --i) {
+			std::swap(first[i], first[D(g, param_t(0, i))]);
+		}
 	}
 };
 
