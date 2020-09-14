@@ -1,34 +1,53 @@
 #pragma once
 namespace singleton {
     // Singleton without multi-thread safe options
-    class Singleton
+    class badSingleton
     {
     public:
-        static Singleton* getInstance()
+        static badSingleton* getInstance()
         {
             // check if exists
             if (m_instance == nullptr)
+                m_instance = new badSingleton();
+            return m_instance;
+
+            /*
+            Maybe you can add lock
+            Lock lock;
+            if (m_instance == nullptr)
                 m_instance = new Singleton();
             return m_instance;
+            */
+
+            /*Double-checked locking(DCL)
+            if (m_instance == nullptr)
+            {
+                Lock lock;
+                if (m_instance == nullptr)
+                    m_instance = new badSingleton();
+            }
+            return m_instance;
+            
+            */
         }
     private:
-        static Singleton* m_instance;
-        Singleton();
-        Singleton(const Singleton& other);
+        static badSingleton* m_instance;
+        badSingleton();
+        badSingleton(const badSingleton& other);
     };
-    Singleton* Singleton::m_instance = nullptr;
+    badSingleton* badSingleton::m_instance = nullptr;
 
-    // multi-thread safe for C++11
+    // multi-thread safe for C++11 or later
     template<typename T>
-    class goodSingleton {
+    class goodSingletonForModernCpp {
     public:
         static T& getInstance() {
             static T value;
             return value;
         }
-        goodSingleton() = delete;
-        goodSingleton(const goodSingleton&) = delete;
-        ~goodSingleton() = delete;
-        goodSingleton& operator=(const goodSingleton&) = delete;
+        goodSingletonForModernCpp() = delete;
+        goodSingletonForModernCpp(const goodSingletonForModernCpp&) = delete;
+        ~goodSingletonForModernCpp() = delete;
+        goodSingletonForModernCpp& operator=(const goodSingletonForModernCpp&) = delete;
     };
 }
