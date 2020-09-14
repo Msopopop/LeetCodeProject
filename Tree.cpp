@@ -70,7 +70,7 @@ std::string& tree::BSTree::get(int index)
 }
 
 tree::LLRBNode::LLRBNode(int index, const std::string& s, const COLOR& color) :
-	basicNode(index, s), color(color), leftNode(nullptr), rightNode(nullptr)
+	basicNode(index, s), leftNode(nullptr), color(color), rightNode(nullptr)
 {
 }
 

@@ -17,6 +17,7 @@ public:
 	
 	Node() noexcept;
 	Node(const Node& node) = delete;
+	Node& operator=(const Node&) = delete;
 	Node(Node&& node) noexcept;
 
 	~Node() noexcept;

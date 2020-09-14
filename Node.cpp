@@ -16,12 +16,8 @@ Node::~Node() noexcept {
 class Node::impl {
 public:
 	impl() noexcept :
-		stringValue("DEAFULT"), 
-		indexValue(0) {
-	}
-	impl(const impl& imp) noexcept :
-		stringValue(imp.stringValue),
-		indexValue(imp.indexValue){
+		indexValue(0),
+		stringValue("DEAFULT")  {
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, const impl& imp) {
@@ -29,8 +25,8 @@ public:
 		return os;
 	}
 private:
+	size_t indexValue;
 	std::string stringValue;
-	int indexValue;
 };
 
 

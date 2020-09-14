@@ -1,12 +1,15 @@
 #ifdef _MSC_VER
 #include <iostream>
+
+#ifdef _DEBUG
 #include <cassert>
-#include <type_traits>
+#endif
+
 #else
 #include <bits/stdc++.h>
 #endif // _MSC_VER
 
-// for memory leak detection
+// for memory leak detection on debug mode
 #if (defined _MSC_VER) && (defined _DEBUG)
 #define _CRTDBG_MAP_ALLOC
 #include <cstdlib> 
@@ -19,7 +22,8 @@ using namespace std;
 
 int main()
 {
-#ifdef _INC_CRTDBG
+
+#if (defined _INC_CRTDBG) && (defined _DEBUG)
 	_CrtDumpMemoryLeaks();
 #endif 
  	return 0;
