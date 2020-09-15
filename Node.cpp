@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node() noexcept :
+Node::Node():
 	next(nullptr),
 	pImpl(std::make_unique<impl>())
 {}
@@ -15,7 +15,7 @@ Node::~Node() noexcept {
 
 class Node::impl {
 public:
-	impl() noexcept :
+	impl() :
 		indexValue(0),
 		stringValue("DEAFULT")  {
 	}

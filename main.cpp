@@ -1,14 +1,12 @@
 #ifdef _MSC_VER
 #include <iostream>
 #include <memory>
-#include <gsl.h>
-#ifdef _DEBUG
-#include <cassert>
-#endif
 #include "LRUcache.h"
+
 #else
 #include <bits/stdc++.h>
 #endif // _MSC_VER
+
 // for memory leak detection on debug mode
 #if (defined _MSC_VER) && (defined _DEBUG)
 #define _CRTDBG_MAP_ALLOC

@@ -15,7 +15,7 @@ public:
 	class impl;	
 	friend std::ostream& operator<<(std::ostream& os, const Node& node);
 	
-	Node() noexcept;
+	Node();
 	Node(const Node& node) = delete;
 	Node& operator=(const Node&) = delete;
 	Node(Node&& node) noexcept;

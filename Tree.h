@@ -9,7 +9,7 @@ namespace tree {
 
 	class basicNode {
 	protected:
-		basicNode() noexcept : index(0), value("")
+		basicNode() : index(0), value("")
 		{
 			;
 		}
@@ -21,10 +21,10 @@ namespace tree {
 		virtual ~basicNode() = default;
 	protected:
 		virtual std::string& getValue() = 0;
-		virtual int getIndex() const = 0;
-		virtual size_t size() const = 0;
-		virtual size_t height() const = 0;
-		virtual bool contains(int index) const = 0;
+		virtual const int getIndex() const = 0;
+		virtual const size_t size() const = 0;
+		virtual const size_t height() const = 0;
+		virtual const bool contains(int index) const = 0;
 		virtual std::string& get(int index) = 0;
 		int index;
 		std::string value;
@@ -37,16 +37,16 @@ namespace tree {
 
 		explicit normalNode(int index, const std:: string& s);
 		~normalNode();
-		inline std::string& getValue() override{ return value; }
-		inline int getIndex() const override { return index; }
+		inline std::string& getValue() noexcept override{ return value; }
+		inline const int getIndex() const noexcept override { return index; }
 		
 		std::unique_ptr<normalNode> leftNode;
 		std::unique_ptr<normalNode> rightNode;
 
 	private:
-		size_t size() const override;
-		size_t height() const override;
-		bool contains(int index) const override;
+		const size_t size() const override;
+		const size_t height() const override;
+		const bool contains(int index) const override;
 		std::string& get(int index) override;
 		void set(int index, const std::string& s);
 	}; // class normalNode
@@ -58,16 +58,16 @@ namespace tree {
 		LLRBNode() = delete;
 		LLRBNode(int index, const std::string& s, const COLOR& color);
 
-		inline std::string& getValue() override { return value; }
-		inline int getIndex() const override { return index; }
+		inline std::string& getValue() noexcept override { return value; }
+		inline const int getIndex() const noexcept override { return index; }
 
 		std::unique_ptr<LLRBNode> leftNode;
 		std::unique_ptr<LLRBNode> rightNode;
 	private:
-		void flipColor();
-		size_t size() const override;
-		size_t height() const override;
-		bool contains(int index) const override;
+		void flipColor() noexcept;
+		const size_t size() const override;
+		const size_t height() const override;
+		const bool contains(int index) const override;
 		COLOR color;
 		std::string& get(int index) override;
 	}; //class LLRBNode
@@ -77,8 +77,9 @@ namespace tree {
 	}; // class BNode
 
 	class basicTree {
-	protected:
+	public:
 		virtual ~basicTree() = default;
+	protected:
 		virtual size_t size() const = 0;
 		virtual size_t height() const = 0;
 		virtual bool contains(int index) const = 0;
@@ -113,14 +114,13 @@ namespace tree {
 		{ 
 			root = set(root, index, s); 
 			// root must be BLACK ALWAYS
-			if (!root)
 			root->color = COLOR::BLACK; 
 		}
 	private:
 		std::unique_ptr<LLRBNode>&& set
 		(std::unique_ptr<LLRBNode>& node, int index, const std::string& s);
 
-		static bool isRed(const std::unique_ptr<LLRBNode>& node);
+		static const bool isRed(const std::unique_ptr<LLRBNode>& node) noexcept;
 		static void rotateLeft(std::unique_ptr<LLRBNode>& node);
 		static void rotateRight(std::unique_ptr<LLRBNode>& node);
 		std::unique_ptr<LLRBNode> root;

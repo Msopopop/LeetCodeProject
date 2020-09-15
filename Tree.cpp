@@ -11,7 +11,7 @@ tree::normalNode::~normalNode()
 {
 }
 
-bool tree::normalNode::contains(int index) const
+const bool tree::normalNode::contains(int index) const
 {
 	if (index == this->index) return true;
 	else if (index > this->index) return
@@ -20,37 +20,37 @@ bool tree::normalNode::contains(int index) const
 		this->leftNode == nullptr ? false : this->leftNode->contains(index);
 }
 
-std::string& tree::normalNode::get(int index)
+std::string& tree::normalNode::get(int _index)
 {
-	if (index == this->index) return this->getValue();
-	else if (index > this->index) 
-			return this->rightNode->get(index);
+	if (_index == this->index) return this->getValue();
+	else if (_index > this->index) 
+			return this->rightNode->get(_index);
 		else 
-			return this->leftNode->get(index);
+			return this->leftNode->get(_index);
 }
 
-void tree::normalNode::set(int index, const std::string& s)
+void tree::normalNode::set(int _index, const std::string& s)
 {
-	if (index == this->index)
+	if (_index == this->index)
 		this->value = s;
-	else if (index < this->index) {
-		if (this->leftNode) this->leftNode->set(index, s);
-		else this->leftNode = std::make_unique<normalNode>(index, s);
+	else if (_index < this->index) {
+		if (this->leftNode) this->leftNode->set(_index, s);
+		else this->leftNode = std::make_unique<normalNode>(_index, s);
 	}
 	else {
-		if (this->rightNode) this->rightNode->set(index, s);
-		else this->rightNode = std::make_unique<normalNode>(index, s);
+		if (this->rightNode) this->rightNode->set(_index, s);
+		else this->rightNode = std::make_unique<normalNode>(_index, s);
 	}
 }
 
-size_t tree::normalNode::size() const
+const size_t tree::normalNode::size() const
 {
-	size_t leftH = (!leftNode) ? 0 : leftNode->size();
-	size_t rightH = (!rightNode) ? 0 : rightNode->size();
+	const size_t leftH = (!leftNode) ? 0 : leftNode->size();
+	const size_t rightH = (!rightNode) ? 0 : rightNode->size();
 	return leftH + rightH + 1;
 }
 
-size_t tree::normalNode::height() const
+const size_t tree::normalNode::height() const
 {
 	size_t leftH = 0, rightH = 0;
 	if (leftNode)  leftH = leftNode->height();
@@ -142,7 +142,7 @@ std::unique_ptr<tree::LLRBNode>&& tree::LLRBTree::set(std::unique_ptr<LLRBNode>&
 	return std::move(node);
 }
 
-void tree::LLRBNode::flipColor()
+void tree::LLRBNode::flipColor() noexcept
 {
 	this->color = COLOR::RED;
 	this->leftNode->color = COLOR::BLACK;
@@ -150,14 +150,14 @@ void tree::LLRBNode::flipColor()
 	
 }
 
-size_t tree::LLRBNode::size() const
+const size_t tree::LLRBNode::size() const
 {
-	size_t leftH = (!leftNode) ? 0 : leftNode->size();
-	size_t rightH = (!rightNode) ? 0 : rightNode->size();
+	const size_t leftH = (!leftNode) ? 0 : leftNode->size();
+	const size_t rightH = (!rightNode) ? 0 : rightNode->size();
 	return leftH + rightH + 1;
 }
 
-size_t tree::LLRBNode::height() const
+const size_t tree::LLRBNode::height() const
 {
 	size_t leftH = 0, rightH = 0;
 	if (leftNode)  leftH = leftNode->height();
@@ -165,22 +165,22 @@ size_t tree::LLRBNode::height() const
 	return (leftH > rightH) ? leftH + 1 : rightH + 1;
 }
 
-bool tree::LLRBNode::contains(int index) const
+const bool tree::LLRBNode::contains(int _index) const
 {
-	if (index == this->index) return true;
-	else if (index > this->index) return
-		this->rightNode == nullptr ? false : this->rightNode->contains(index);
+	if (_index == this->index) return true;
+	else if (_index > this->index) return
+		this->rightNode == nullptr ? false : this->rightNode->contains(_index);
 	else return
-		this->leftNode == nullptr ? false : this->leftNode->contains(index);
+		this->leftNode == nullptr ? false : this->leftNode->contains(_index);
 }
 
-std::string& tree::LLRBNode::get(int index)
+std::string& tree::LLRBNode::get(int _index)
 {
-	if (index == this->index) return this->getValue();
-	else if (index > this->index) 
-			return this->rightNode->get(index);
+	if (_index == this->index) return this->getValue();
+	else if (_index > this->index) 
+			return this->rightNode->get(_index);
 		else 
-			return this->leftNode->get(index);
+			return this->leftNode->get(_index);
 }
 
 void tree::LLRBTree::rotateLeft(std::unique_ptr<tree::LLRBNode>& node)
@@ -216,7 +216,7 @@ std::string& tree::LLRBTree::get(int index)
 	else throw std::out_of_range("no elements");
 }
 
-bool tree::LLRBTree::isRed(const std::unique_ptr<LLRBNode>& node)
+const bool tree::LLRBTree::isRed(const std::unique_ptr<LLRBNode>& node) noexcept
 {
 	if (node == nullptr) return false;
 	else return node->color == COLOR::RED;

@@ -60,7 +60,7 @@ class propagate_const {
 
  private:
   template <class U>
-  static element_type* get_pointer(U* u) {
+  static element_type* get_pointer(U* u) noexcept {
     return u;
   }
 
