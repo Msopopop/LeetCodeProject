@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 #include <string>
-
 namespace tree {
 	enum class COLOR : bool
 	{
@@ -10,12 +9,17 @@ namespace tree {
 
 	class basicNode {
 	protected:
-		basicNode() = delete;
+		basicNode() noexcept : index(0), value("")
+		{
+			;
+		}
 		basicNode(int index, const std::string& s):
 			index(index), value(s) {
 			;
 		}
+	public:
 		virtual ~basicNode() = default;
+	protected:
 		virtual std::string& getValue() = 0;
 		virtual int getIndex() const = 0;
 		virtual size_t size() const = 0;
@@ -60,11 +64,11 @@ namespace tree {
 		std::unique_ptr<LLRBNode> leftNode;
 		std::unique_ptr<LLRBNode> rightNode;
 	private:
-		COLOR color;
 		void flipColor();
 		size_t size() const override;
 		size_t height() const override;
 		bool contains(int index) const override;
+		COLOR color;
 		std::string& get(int index) override;
 	}; //class LLRBNode
 
@@ -109,6 +113,7 @@ namespace tree {
 		{ 
 			root = set(root, index, s); 
 			// root must be BLACK ALWAYS
+			if (!root)
 			root->color = COLOR::BLACK; 
 		}
 	private:

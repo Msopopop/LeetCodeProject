@@ -77,6 +77,10 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -131,7 +135,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -160,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ListMethods.h" />
+    <ClInclude Include="LRUcache.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="propagate_const.h" />
     <ClInclude Include="Singleton.h" />
@@ -211,6 +216,7 @@
     <Import Project="packages\boost_wserialization-vc142.1.71.0.0\build\boost_wserialization-vc142.targets" Condition="Exists('packages\boost_wserialization-vc142.1.71.0.0\build\boost_wserialization-vc142.targets')" />
     <Import Project="packages\boost_zlib-vc142.1.71.0.0\build\boost_zlib-vc142.targets" Condition="Exists('packages\boost_zlib-vc142.1.71.0.0\build\boost_zlib-vc142.targets')" />
     <Import Project="packages\boost-vc142.1.71.0.0\build\boost-vc142.targets" Condition="Exists('packages\boost-vc142.1.71.0.0\build\boost-vc142.targets')" />
+    <Import Project="packages\Microsoft.Gsl.0.1.2.1\build\native\Microsoft.Gsl.targets" Condition="Exists('packages\Microsoft.Gsl.0.1.2.1\build\native\Microsoft.Gsl.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -258,5 +264,6 @@
     <Error Condition="!Exists('packages\boost_wserialization-vc142.1.71.0.0\build\boost_wserialization-vc142.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_wserialization-vc142.1.71.0.0\build\boost_wserialization-vc142.targets'))" />
     <Error Condition="!Exists('packages\boost_zlib-vc142.1.71.0.0\build\boost_zlib-vc142.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_zlib-vc142.1.71.0.0\build\boost_zlib-vc142.targets'))" />
     <Error Condition="!Exists('packages\boost-vc142.1.71.0.0\build\boost-vc142.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost-vc142.1.71.0.0\build\boost-vc142.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Gsl.0.1.2.1\build\native\Microsoft.Gsl.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Gsl.0.1.2.1\build\native\Microsoft.Gsl.targets'))" />
   </Target>
 </Project>
