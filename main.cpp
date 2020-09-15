@@ -1,8 +1,8 @@
 #ifdef _MSC_VER
 #include <iostream>
 #include <memory>
-#include "LRUcache.h"
-
+#include "Singleton.h"
+using namespace singleton;
 #else
 #include <bits/stdc++.h>
 #endif // _MSC_VER
@@ -20,7 +20,7 @@ using namespace std;
 
 int main() 
 {
-	LRUcache<size_t, string> lru(4);
+	auto t = goodSingleton<string>::getInstance("1234");
 #if (defined _INC_CRTDBG) && (defined _DEBUG)
 	_CrtDumpMemoryLeaks();
 #endif 

@@ -7,17 +7,13 @@ tree::normalNode::normalNode(int index, const std::string& s):
 {
 }
 
-tree::normalNode::~normalNode()
+const bool tree::normalNode::contains(int _index) const
 {
-}
-
-const bool tree::normalNode::contains(int index) const
-{
-	if (index == this->index) return true;
-	else if (index > this->index) return
-		this->rightNode == nullptr ? false : this->rightNode->contains(index);
+	if (_index == this->index) return true;
+	else if (_index > this->index) return
+		this->rightNode == nullptr ? false : this->rightNode->contains(_index);
 	else return
-		this->leftNode == nullptr ? false : this->leftNode->contains(index);
+		this->leftNode == nullptr ? false : this->leftNode->contains(_index);
 }
 
 std::string& tree::normalNode::get(int _index)

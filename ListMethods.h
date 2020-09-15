@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#pragma warning(disable:26440, 26486, 26487, 26489)
     class ListMethods {
     private:
         struct ForwardListNode {
@@ -219,4 +220,4 @@
 
         }
     };
-
+#pragma warning(default:26440, 26486, 26487, 26489)

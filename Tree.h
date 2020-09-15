@@ -36,7 +36,7 @@ namespace tree {
 		friend class BSTree;
 
 		explicit normalNode(int index, const std:: string& s);
-		~normalNode();
+
 		inline std::string& getValue() noexcept override{ return value; }
 		inline const int getIndex() const noexcept override { return index; }
 		
@@ -55,8 +55,7 @@ namespace tree {
 	public:
 		friend class LLRBTree;
 
-		LLRBNode() = delete;
-		LLRBNode(int index, const std::string& s, const COLOR& color);
+		explicit LLRBNode(int index, const std::string& s, const COLOR& color);
 
 		inline std::string& getValue() noexcept override { return value; }
 		inline const int getIndex() const noexcept override { return index; }
@@ -90,7 +89,6 @@ namespace tree {
 	class BSTree : public basicTree
 	{
 	public:
-		BSTree() = delete;
 		explicit BSTree(int index ,const std::string& s);
 
 		inline size_t size() const override { return root->size(); }
@@ -104,8 +102,8 @@ namespace tree {
 
 	class LLRBTree : public basicTree{
 	public:
-		LLRBTree() = delete;
 		explicit LLRBTree(int index, const std::string& s);
+
 		inline size_t size() const override { return root->size(); }
 		inline size_t height() const override  { return root->height(); }
 		inline bool contains(int index) const override { return root->contains(index); }
