@@ -1,6 +1,7 @@
 #ifdef _MSC_VER
 #include <iostream>
 #include <memory>
+#include <cassert>
 #include "Singleton.h"
 using namespace singleton;
 #else
@@ -20,7 +21,8 @@ using namespace std;
 
 int main() 
 {
-	auto t = goodSingleton<string>::getInstance("1234");
+	auto t = goodSingleton<string>::getInstance({ 'a' });
+	cout << t;
 #if (defined _INC_CRTDBG) && (defined _DEBUG)
 	_CrtDumpMemoryLeaks();
 #endif 

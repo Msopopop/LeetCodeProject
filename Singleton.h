@@ -44,18 +44,14 @@ namespace singleton {
     // multi-thread safe for C++11 or later
     template<typename T>
     class goodSingleton {
-    public:
-        template<typename ...Args, 
-        std::enable_if_t<std::is_convertible_v<Args&&, T> ||
-            std::is_constructible_v<T, Args&&>,
-            bool> = true>
+    public:       
+        template<typename ...Args>
         static T& getInstance(Args&&... args) 
-            noexcept(std::is_nothrow_constructible_v<T, Args&&> ||
-                     std::_Is_nothrow_convertible_v<Args&&, T>)
         {
             static T value(std::forward<Args>(args)...);
             return value;
         }
+
         goodSingleton() = delete;
         goodSingleton(const goodSingleton&) = delete;
         ~goodSingleton() = delete;

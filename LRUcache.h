@@ -11,8 +11,9 @@ class LRUcache {
 	public:
 		using key_value_pair_t = typename std::pair<_Kty, _Ty>;
 		using list_iterator_t = typename std::list<key_value_pair_t>::iterator;
-		
-		LRUcache(size_t max_size) :
+		LRUcache() :_size(16uLL) { ; }
+
+		LRUcache(const size_t& max_size) :
 			_size(max_size) {
 		}
 
@@ -47,7 +48,9 @@ class LRUcache {
 				cacheList.pop_back();
 			}
 		}
-
+#ifdef _HAS_NODISCARD
+		_NODISCARD
+#endif 
 		_Ty& at(const _Kty& key) noexcept(false) {
 			auto it = hash.find(key);
 			if (it == end(hash)) {
@@ -58,7 +61,9 @@ class LRUcache {
 				return it->second->second;
 			}
 		}
-
+#ifdef _HAS_NODISCARD
+		_NODISCARD
+#endif 
 		const _Ty& at(const _Kty& key) const noexcept(false) {
 			auto it = hash.find(key);
 			if (it == hash.end()) {
@@ -69,6 +74,9 @@ class LRUcache {
 				return it->second->second;
 			}
 		}
+#ifdef _HAS_NODISCARD
+		_NODISCARD
+#endif 
 		bool exists(_Kty&& key) const noexcept{
 			return hash.find(key) != hash.end();
 		}
