@@ -1,5 +1,7 @@
 #ifdef _MSC_VER
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 #else
 #include <bits/stdc++.h>
 #endif // _MSC_VER
@@ -13,14 +15,14 @@
 #else
 #define DBG_NEW new
 #endif // defined (_MSC_VER && _DEBUG)
+
 using namespace std;
 
-int main() 
-{	
-
+int main()
+{
 #if (defined _INC_CRTDBG) && (defined _DEBUG)
 	_CrtDumpMemoryLeaks();
 #endif 
- 	return 0;
-}
 
+	return 0;
+}

@@ -75,7 +75,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>C++CoreGuidelines.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RunCodeAnalysis>true</RunCodeAnalysis>
@@ -96,7 +96,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
@@ -109,6 +108,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <IntelJCCErratum>true</IntelJCCErratum>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
